@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosso Tempo Juntos</title>
+    <style>
+        body {
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            background-color: #ffe6e6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #ffb3b3;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        header p {
+            margin: 5px 0;
+            font-size: 1.2rem;
+        }
+        .carousel {
+            margin: 20px auto;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .carousel img {
+            width: 100%;
+            display: none;
+        }
+        .carousel img.active {
+            display: block;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+        .container p {
+            font-size: 1.3rem;
+            color: #555;
+        }
+        .time {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff6666;
+            margin-top: 10px;
+        }
+        footer {
+            background-color: #ffb3b3;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Nosso Amor em Números</h1>
+        <p>Desde que dissemos "sim" ao amor verdadeiro</p>
+    </header>
+
+    <div class="carousel" id="carousel">
+        <img src="foto1.jpg" alt="Foto 1" class="active">
+        <img src="foto2.jpg" alt="Foto 2">
+        <img src="foto3.jpg" alt="Foto 3">
+        <!-- Adicione mais imagens aqui -->
+    </div>
+
+    <div class="container">
+        <p>Amor, cada segundo ao seu lado é único. Que esse tempo continue sendo uma história linda, escrita a dois.</p>
+        <p>Estamos juntos há:</p>
+        <div class="time" id="timeTogether"></div>
+    </div>
+
+    <footer>
+        <p>Com todo meu amor, Kayky ♥</p>
+    </footer>
+
+    <script>
+        // Função para calcular o tempo juntos
+        function calculateTimeTogether() {
+            const startDate = new Date("2025-01-07T22:04:35");
+            const now = new Date();
+            const diff = now - startDate;
+
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+            const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44));
+            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("timeTogether").textContent = 
+                `${years} anos, ${months} meses, ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos.`;
+        }
+
+        // Atualiza o tempo juntos a cada segundo
+        setInterval(calculateTimeTogether, 1000);
+
+        // Função para o carrossel de imagens
+        const carousel = document.getElementById("carousel");
+        const images = carousel.getElementsByTagName("img");
+        let currentIndex = 0;
+
+        setInterval(() => {
+            images[currentIndex].classList.remove("active");
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].classList.add("active");
+        }, 3000);
+    </script>
+</body>
+</html>
