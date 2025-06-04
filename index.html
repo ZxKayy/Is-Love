@@ -91,38 +91,42 @@
     <footer>
         <p>Com todo o amor do seu bbzin♥</p>
     </footer>
+<script>
+    function calculateTimeTogether() {
+        // Data corrigida com fuso horário UTC-3 (Brasil): 19:23 em Brasília = 22:23 UTC
+        const startDate = new Date("2024-08-08T22:23:00Z");
 
-    <script>
-        // Função para calcular o tempo juntos
-        function calculateTimeTogether() {
-            const startDate = new Date("2024-08-08T19:23:35");
-            const now = new Date();
-            const diff = now - startDate;
+        const now = new Date();
+        let diff = now - startDate;
 
-            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
-            const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44));
-            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        const second = 1000;
+        const minute = second * 60;
+        const hour = minute * 60;
+        const day = hour * 24;
+        const month = day * 30.44; // média de dias por mês
+        const year = day * 365.25;
 
-            document.getElementById("timeTogether").textContent = 
-                `${years} anos, ${months} meses, ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos.`;
-        }
+        const years = Math.floor(diff / year);
+        diff %= year;
 
-        // Atualiza o tempo juntos a cada segundo
-        setInterval(calculateTimeTogether, 1000);
+        const months = Math.floor(diff / month);
+        diff %= month;
 
-        // Função para o carrossel de imagens
-        const carousel = document.getElementById("carousel");
-        const images = carousel.getElementsByTagName("img");
-        let currentIndex = 0;
+        const days = Math.floor(diff / day);
+        diff %= day;
 
-        setInterval(() => {
-            images[currentIndex].classList.remove("active");
-            currentIndex = (currentIndex + 1) % images.length;
-            images[currentIndex].classList.add("active");
-        }, 3000);
-    </script>
-</body>
-</html>
+        const hours = Math.floor(diff / hour);
+        diff %= hour;
+
+        const minutes = Math.floor(diff / minute);
+        diff %= minute;
+
+        const seconds = Math.floor(diff / second);
+
+        document.getElementById("timeTogether").textContent =
+            `${years} anos, ${months} meses, ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos.`;
+    }
+
+    // Atualiza o tempo a cada segundo
+    setInterval(calculateTimeTogether, 1000);
+</script>
